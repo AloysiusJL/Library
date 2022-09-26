@@ -4,9 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header">
+        <p>The Odin Library</p>
+    </div>
+    <div class="main">
+        <button data-modal-target="#modal" class="newBook" id="newBook">Add a Book</button>
+        <table></table>
+    </div>
+    <div class="modal" id="modal">
+        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="author" placeholder="Author">
+        <input type="number" id="pages" placeholder="Pages" min="0">
+        <fieldset role="radiogroup">
+            <legend>Read Book?</legend>
+            <label for="yes">
+                <input type="radio" id="yes" name="read" value="yes" checked>
+                <span>Yes</span>
+                <input type="radio" id="no" name="read" value="no">
+                <span>No</span>
+            </label>
+        </fieldset>
+        <div class="button">
+            <button id="submit">Submit</button>
+            <button data-close-button class="return" id="return">Return</button>
+        </div>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>
