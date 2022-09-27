@@ -19,13 +19,18 @@
     align-items: center;
     gap: 10px;
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
     z-index: 10;
-    width: 400px;
+    width: 250px;
     max-width: 80%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .modal.active{
@@ -34,4 +39,36 @@
 
 .submit{
     cursor: pointer;
+}
+
+.overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:  rgba(0, 0, 0, .5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+}
+
+.overlay.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+table{
+    width: 100%;
+    background-color: white;
+    color: black;
+    border-spacing: 0;
+    border-bottom: 5px solid white;
+    margin-top: 50px;
+}
+
+th{
+    padding: 10px;
+    text-align: center;
+    background-color: gray;
 }

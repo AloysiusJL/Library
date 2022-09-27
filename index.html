@@ -13,7 +13,28 @@
     </div>
     <div class="main">
         <button data-modal-target="#modal" class="newBook" id="newBook">Add a Book</button>
-        <table></table>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Read</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- <td>TitleData</td>
+                    <td>AuthorData</td>
+                    <td>PagesData</td>
+                    <td>ReadData</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Delete</button></td> -->
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="modal" id="modal">
         <input type="text" id="title" placeholder="Title">
@@ -33,6 +54,7 @@
             <button data-close-button class="return" id="return">Return</button>
         </div>
     </div>
+    <div class="overlay" id="overlay"></div>
     <script src="./script.js"></script>
 </body>
 </html>
