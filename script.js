@@ -4,9 +4,10 @@ const form = document.querySelector('.modal')
 const titleInput = form.querySelector('#title')
 const authorInput = form.querySelector('#author')
 const pagesInput = form.querySelector('#pages')
-const sunmitButton = form.querySelector('#submit')
+const sunmitButton = form.querySelectorAll('#submit')
 
 let myLibrary = [];
+let index = ""
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -27,10 +28,13 @@ function addBookToLibrary() {
   myLibrary.push(newBook)
 }
 
-sunmitButton.addEventListener('click', () => {
-  addBookToLibrary()
-  closeModal(modal)  
-  buildTable(myLibrary)
+sunmitButton.forEach(button => {
+  button.addEventListener('click', () => {
+    if (titleInput.value !== "" && authorInput.value !== "" && pagesInput.value !== "") addBookToLibrary();
+    else closeModal(modal);
+    closeModal(modal)
+    updateTable()    
+  })
 })
 
 function getReadValue(){
@@ -49,34 +53,66 @@ myLibrary.push(book2)
 
 console.table(myLibrary)
 
+// populate table
 function buildTable(data){
-  let table =document.getElementById('tableBody')
-
+  let table = document.getElementById('tableBody')
   for (var i = 0; i < data.length; i++){
     let row = `<tb>
                   <td>${data[i].title}</td>
                   <td>${data[i].author}</td>
                   <td>${data[i].pages}</td>
                   <td>${data[i].read}</td>
-                  <td><button>Edit</button></td>
-                  <td><button>Delete</button></td>
+                  <td><button id="Edit">edit</button></td>
+                  <td><button data-index="${[i]}" id="delete">Delete</button></td>
               </tb>`
     table.innerHTML += row
+    const deleteButton = document.querySelectorAll('#delete')
+    deleteButton.forEach(button => {
+    button.addEventListener('click', () => {
+    index = button.dataset.index
+    deleteArray()
+  })
+})
+
   }
 }
 
+// delete all table
+function deleteTable(){
+  let table =document.getElementById('tableBody')
+  while (table.hasChildNodes()){
+    table.removeChild(table.firstChild)
+  }
+}
+
+function updateTable(){
+  deleteTable()
+  buildTable(myLibrary)
+}
+
 buildTable(myLibrary)
+
+function deleteArray(){
+  myLibrary.splice(index, 1)
+  updateTable()
+}
+
+function clearForm (){
+  titleInput.value = ""
+  authorInput.value = ""
+  pagesInput.value = ""
+}
 
 // open and close modal
 const openMadalButtons = document.querySelectorAll('[data-modal-target]')
 const closeMadalButtons = document.querySelectorAll('#return')
 const overlay = document.getElementById('overlay')
 
-
 openMadalButtons.forEach(button => {
   button.addEventListener('click', () => {
     const modal = document.querySelector(button.dataset.modalTarget)
     openModal(modal)  
+    clearForm()
   })
 })
 
@@ -105,7 +141,3 @@ overlay.addEventListener('click', () => {
     closeModal(modal)
   })
 })
-
-
-
-
